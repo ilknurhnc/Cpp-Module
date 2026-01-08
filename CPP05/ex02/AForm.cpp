@@ -1,12 +1,12 @@
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
-AForm::AForm(const std::string& n, int sign_g, int exec_g)
-    : name(n), is_signed(false), grade_to_sign(sign_g), grade_to_execute(exec_g)
+AForm::AForm(const std::string& name, int sign, int exec)
+    : name(name), is_signed(false), grade_to_sign(sign), grade_to_execute(exec)
 {
-    if (sign_g < 1 || exec_g < 1)
+    if (sign < 1 || exec < 1)
         throw AForm::GradeTooHighException();
-    if (sign_g > 150 || exec_g > 150)
+    if (sign > 150 || exec > 150)
         throw AForm::GradeTooLowException();
     std::cout << "AForm " << this->name << " base created." << std::endl;
 }
@@ -16,17 +16,17 @@ AForm::~AForm()
     std::cout << "AForm " << this->name << " base destroyed." << std::endl;
 }
 
-AForm::AForm(const AForm& other)
-    : name(other.name), is_signed(other.is_signed),
-      grade_to_sign(other.grade_to_sign), grade_to_execute(other.grade_to_execute)
+AForm::AForm(const AForm& obj)
+    : name(obj.name), is_signed(obj.is_signed),
+      grade_to_sign(obj.grade_to_sign), grade_to_execute(obj.grade_to_execute)
 {
     std::cout << "AForm " << this->name << " base copied." << std::endl;
 }
 
-AForm& AForm::operator=(const AForm& other)
+AForm& AForm::operator=(const AForm& obj)
 {
-    if (this != &other) {
-        this->is_signed = other.is_signed;
+    if (this != &obj) {
+        this->is_signed = obj.is_signed;
         std::cout << "AForm " << this->name << " base assigned." << std::endl;
     }
     return *this;

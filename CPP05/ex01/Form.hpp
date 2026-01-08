@@ -28,11 +28,10 @@ public:
             const char *what() const throw();
     };
     
-    // Parametreli Kurucu (is_signed başlangıçta false olmalı)
     Form(const std::string& name, int sign_grade, int exec_grade);
     ~Form();
-    Form(const Form& other);
-    Form& operator=(const Form& other);
+    Form(const Form& obj);
+    Form& operator=(const Form& obj);
 
     const std::string& getName() const;
     bool getSignedStatus() const;

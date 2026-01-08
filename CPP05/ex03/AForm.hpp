@@ -37,10 +37,10 @@ class AForm
                 const char *what() const throw();
         };
     
-        AForm(const std::string& name, int sign_grade, int exec_grade);
+        AForm(const std::string& name, int sign, int exec);
         virtual ~AForm();
-        AForm(const AForm& other);
-        AForm& operator=(const AForm& other);
+        AForm(const AForm& obj);
+        AForm& operator=(const AForm& obj);
 
         const std::string& getName() const;
         bool getSignedStatus() const;

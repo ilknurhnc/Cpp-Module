@@ -14,15 +14,15 @@ RobotomyRequestForm::~RobotomyRequestForm()
     std::cout << "RobotomyRequestForm for " << this->target << " destroyed." << std::endl;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other)
-    : AForm(other), target(other.target)
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& obj)
+    : AForm(obj), target(obj.target)
 {
     std::cout << "RobotomyRequestForm for " << this->target << " copied." << std::endl;
 }
 
-RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& other)
+RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& obj)
 {
-    AForm::operator=(other);
+    AForm::operator=(obj);
     std::cout << "RobotomyRequestForm assigned." << std::endl;
     return *this;
 }

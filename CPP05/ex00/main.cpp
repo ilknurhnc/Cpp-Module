@@ -38,7 +38,7 @@ int main()
         Bureaucrat b("Maximal", 1);
         std::cout << "\n--- Testing GradeTooHigh on Increment ---" << std::endl;
         std::cout << b << std::endl;
-        b.incrementGrade(); // İstisna fırlatmalı
+        b.incrementGrade();
     }
     catch (std::exception& e)
     {

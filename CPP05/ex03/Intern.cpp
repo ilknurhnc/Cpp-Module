@@ -14,14 +14,14 @@ Intern::~Intern()
     std::cout << "Intern destroyed. Hopefully learned something." << std::endl;
 }
 
-Intern::Intern(const Intern& other)
+Intern::Intern(const Intern& obj)
 {
-    (void)other;
+    (void)obj;
     std::cout << "Intern copied." << std::endl;
 }
 
-Intern& Intern::operator=(const Intern& other) {
-    (void)other;
+Intern& Intern::operator=(const Intern& obj) {
+    (void)obj;
     return *this;
 }
 

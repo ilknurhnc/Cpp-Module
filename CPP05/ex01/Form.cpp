@@ -11,13 +11,13 @@ const char *Form::GradeTooLowException::what() const throw()
     return "Form exception: Grade is too low (must be 150 or lower).";
 }
 
-Form::Form(const std::string& n, int sign_g, int exec_g)
-    : name(n), is_signed(false), grade_to_sign(sign_g), grade_to_execute(exec_g)
+Form::Form(const std::string& name, int sign, int exec)
+    : name(name), is_signed(false), grade_to_sign(sign), grade_to_execute(exec)
 {
-    if (sign_g < 1 || exec_g < 1)
+    if (sign < 1 || exec < 1)
         throw Form::GradeTooHighException();
 
-    if (sign_g > 150 || exec_g > 150)
+    if (sign > 150 || exec > 150)
         throw Form::GradeTooLowException();
 
     std::cout << "Form " << this->name << " created." << std::endl;
@@ -28,18 +28,18 @@ Form::~Form()
     std::cout << "Form " << this->name << " destroyed." << std::endl;
 }
 
-Form::Form(const Form& other)
-    : name(other.name), is_signed(other.is_signed),
-      grade_to_sign(other.grade_to_sign), grade_to_execute(other.grade_to_execute)
+Form::Form(const Form& obj)
+    : name(obj.name), is_signed(obj.is_signed),
+      grade_to_sign(obj.grade_to_sign), grade_to_execute(obj.grade_to_execute)
 {
     std::cout << "Form " << this->name << " copied." << std::endl;
 }
 
-Form& Form::operator=(const Form& other)
+Form& Form::operator=(const Form& obj)
 {
-    if (this != &other)
+    if (this != &obj)
     {
-        this->is_signed = other.is_signed;
+        this->is_signed = obj.is_signed;
         std::cout << "Form " << this->name << " assigned (only signed status copied)." << std::endl;
     }
     return *this;

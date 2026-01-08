@@ -17,14 +17,14 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
     std::cout << "ShrubberyCreationForm for " << this->target << " destroyed." << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other) : AForm(other), target(other.target)
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& obj) : AForm(obj), target(obj.target)
 {
     std::cout << "ShrubberyCreationForm for " << this->target << " copied." << std::endl;
 }
 
-ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& other)
+ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& obj)
 {
-    AForm::operator=(other);
+    AForm::operator=(obj);
     std::cout << "ShrubberyCreationForm assigned." << std::endl;
     return *this;
 }

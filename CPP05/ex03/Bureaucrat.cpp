@@ -11,11 +11,11 @@ const char *Bureaucrat::GradeTooLowException::what() const throw()
     return "Bureaucrat exception: Grade is too low (must be 150 or lower).";
 }
 
-Bureaucrat::Bureaucrat(const std::string& n, int g) : name(n), grade(g)
+Bureaucrat::Bureaucrat(const std::string& name, int grade) : name(name), grade(grade)
 {
-    if (g < 1)
+    if (grade < 1)
         throw Bureaucrat::GradeTooHighException();
-    if (g > 150)
+    if (grade > 150)
         throw Bureaucrat::GradeTooLowException();
     std::cout << "Bureaucrat " << this->name << " created with grade " << this->grade << "." << std::endl;
 }
@@ -25,16 +25,16 @@ Bureaucrat::~Bureaucrat()
     std::cout << "Bureaucrat " << this->name << " destroyed." << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& other) : name(other.name), grade(other.grade)
+Bureaucrat::Bureaucrat(const Bureaucrat& obj) : name(obj.name), grade(obj.grade)
 {
     std::cout << "Bureaucrat " << this->name << " copied." << std::endl;
 }
 
-Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
+Bureaucrat& Bureaucrat::operator=(const Bureaucrat& obj)
 {
-    if (this != &other)
+    if (this != &obj)
     {
-        this->grade = other.grade;
+        this->grade = obj.grade;
         std::cout << "Bureaucrat " << this->name << " assigned grade " << this->grade << "." << std::endl;
     }
     return *this;

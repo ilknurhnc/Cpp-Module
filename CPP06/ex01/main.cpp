@@ -1,7 +1,7 @@
 #include "Serializer.hpp"
 #include "Data.hpp"
 #include <iostream>
-#include <iomanip> // Adreslerin hex formatında yazdırılması için
+#include <iomanip>
 
 void printDataInfo(const Data* ptr, const std::string& name)
 {

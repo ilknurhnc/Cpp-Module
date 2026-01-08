@@ -13,15 +13,15 @@ PresidentialPardonForm::~PresidentialPardonForm()
     std::cout << "PresidentialPardonForm for " << this->target << " destroyed." << std::endl;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& other)
-    : AForm(other), target(other.target)
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& obj)
+    : AForm(obj), target(obj.target)
 {
     std::cout << "PresidentialPardonForm for " << this->target << " copied." << std::endl;
 }
 
-PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& other)
+PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& obj)
 {
-    AForm::operator=(other);
+    AForm::operator=(obj);
     std::cout << "PresidentialPardonForm assigned." << std::endl;
     return *this;
 }
