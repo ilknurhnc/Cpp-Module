@@ -1,60 +1,85 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 #include <iostream>
-
-void test_bureaucrat(const std::string& name, int grade)
-{
-    std::cout << "\n--- Testing Bureaucrat: " << name << " Grade: " << grade << " ---" << std::endl;
-    try
-    {
-        Bureaucrat b(name, grade);
-        std::cout << b << std::endl;
-
-        if (b.getGrade() > 1)
-        {
-            b.incrementGrade();
-            std::cout << b << std::endl;
-        }
-
-        if (b.getGrade() < 150)
-        {
-            b.decrementGrade();
-            std::cout << b << std::endl;
-        }
-    }
-    catch (std::exception& e)
-    {
-        std::cerr << "Caught exception: " << e.what() << std::endl;
-    }
-}
 
 int main()
 {
-    test_bureaucrat("Arthur", 42);
-    test_bureaucrat("TooHighGuy", 0);
-    test_bureaucrat("TooLowGuy", 151);
+    std::cout << "\n--- Valid form construction ---" << std::endl;
 
     try
     {
-        Bureaucrat b("Maximal", 1);
-        std::cout << "\n--- Testing GradeTooHigh on Increment ---" << std::endl;
-        std::cout << b << std::endl;
-        b.incrementGrade(); // İstisna fırlatmalı
+        Form contract("Contract", 50, 25);
+        std::cout << contract << std::endl;
     }
-    catch (std::exception& e)
+    catch (const std::exception& e)
     {
-        std::cerr << "Caught exception: " << e.what() << std::endl;
+        std::cerr << e.what() << std::endl;
+    }
+
+    std::cout << "\n--- Invalid form grades ---" << std::endl;
+
+    try
+    {
+        Form invalidHigh("InvalidHigh", 0, 50);
+    }
+    catch (const std::exception& e)
+    {
+        std::cerr << e.what() << std::endl;
     }
 
     try
     {
-        Bureaucrat b("Minimal", 150);
-        std::cout << "\n--- Testing GradeTooLow on Decrement ---" << std::endl;
-        std::cout << b << std::endl;
-        b.decrementGrade();
+        Form invalidLow("InvalidLow", 50, 151);
     }
-    catch (std::exception& e)
+    catch (const std::exception& e)
     {
-        std::cerr << "Caught exception: " << e.what() << std::endl;
+        std::cerr << e.what() << std::endl;
+    }
+
+    std::cout << "\n--- Successful signing ---" << std::endl;
+
+    try
+    {
+        Bureaucrat manager("Manager", 40);
+        Form contract("Contract", 50, 25);
+
+        std::cout << contract << std::endl;
+        manager.signForm(contract);
+        std::cout << contract << std::endl;
+    }
+    catch (const std::exception& e)
+    {
+        std::cerr << e.what() << std::endl;
+    }
+
+    std::cout << "\n--- Failed signing ---" << std::endl;
+
+    try
+    {
+        Bureaucrat intern("Intern", 100);
+        Form confidential("Confidential", 50, 25);
+
+        intern.signForm(confidential);
+        std::cout << confidential << std::endl;
+    }
+    catch (const std::exception& e)
+    {
+        std::cerr << e.what() << std::endl;
+    }
+
+    std::cout << "\n--- Exact required grade ---" << std::endl;
+
+    try
+    {
+        Bureaucrat exact("Exact", 50);
+        Form exactForm("ExactForm", 50, 25);
+
+        exact.signForm(exactForm);
+        std::cout << exactForm << std::endl;
+    }
+    catch (const std::exception& e)
+    {
+        std::cerr << e.what() << std::endl;
     }
 
     return 0;

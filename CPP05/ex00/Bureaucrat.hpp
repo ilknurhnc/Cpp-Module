@@ -23,7 +23,7 @@ class Bureaucrat
                 const char *what() const throw();
         };
 
-        Bureaucrat(const std::string& name, int grade);
+        Bureaucrat(const std::string& n, int g);
         ~Bureaucrat();
         Bureaucrat(const Bureaucrat& obj);
         Bureaucrat& operator=(const Bureaucrat& obj);
