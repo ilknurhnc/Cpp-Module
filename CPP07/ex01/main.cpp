@@ -1,37 +1,58 @@
 #include <iostream>
 #include <string>
-#include <cstddef>
 #include "iter.hpp"
 
-template<typename Type>
-void print_array(const std::string& msg, const Type* arr, size_t len)
-{
-    std::cout << "\n[" << msg << "]: ";
-    ::iter(arr, len, print<Type>);
-    std::cout << std::endl;
+template <typename T>
+void printElement(const T &element) {
+    std::cout << element << " ";
 }
 
-int main()
-{
-    int int_arr[] = {10, 20, 30};
-    size_t int_len = sizeof(int_arr) / sizeof(int_arr[0]);
+template <typename T>
+void increment(T &element) {
+    element++;
+}
 
-    print_array("Başlangıç", int_arr, int_len);
-    ::iter(int_arr, int_len, add<int>);
-    print_array("Artırma Sonrası", int_arr, int_len);
+void toUpperPrefix(std::string &str) {
+    str = "42_" + str;
+}
 
-    std::string str_arr[] = {"C++", "Module", "Iter"};
-    size_t str_len = sizeof(str_arr) / sizeof(str_arr[0]);
+int main(void) {
+    std::cout << "=== TEST 1: Integer Array (Non-Const) ===" << std::endl;
+    int numbers[] = {1, 2, 3, 4, 5};
+    size_t num_len = sizeof(numbers) / sizeof(numbers[0]);
 
-    print_array("Başlangıç", str_arr, str_len);
-    ::iter(str_arr, str_len, append_world); 
-    print_array("Ekleme Sonrası", str_arr, str_len); 
-    
-    const int const_arr[] = {100, 200, 300};
-    size_t const_len = sizeof(const_arr) / sizeof(const_arr[0]);
+    std::cout << "Original: ";
+    ::iter(numbers, num_len, printElement<int>);
+    std::cout << std::endl;
 
-    std::cout << "Const Array Elemanları: ";
-    ::iter(const_arr, const_len, print<int>);
+    std::cout << "Incrementing elements..." << std::endl;
+    ::iter(numbers, num_len, increment<int>);
+
+    std::cout << "Modified: ";
+    ::iter(numbers, num_len, printElement<int>);
+    std::cout << "\n\n";
+
+    std::cout << "=== TEST 2: String Array ===" << std::endl;
+    std::string words[] = {"cpp", "module", "templates"};
+    size_t word_len = sizeof(words) / sizeof(words[0]);
+
+    std::cout << "Original: ";
+    ::iter(words, word_len, printElement<std::string>);
+    std::cout << std::endl;
+
+    ::iter(words, word_len, toUpperPrefix);
+
+    std::cout << "Modified: ";
+    ::iter(words, word_len, printElement<std::string>);
+    std::cout << "\n\n";
+
+    std::cout << "=== TEST 3: Const Integer Array (Read-Only) ===" << std::endl;
+    const int const_numbers[] = {10, 20, 30};
+    size_t const_len = sizeof(const_numbers) / sizeof(const_numbers[0]);
+
+    std::cout << "Const Elements: ";
+
+    ::iter(const_numbers, const_len, printElement<int>);
     std::cout << std::endl;
 
     return 0;
