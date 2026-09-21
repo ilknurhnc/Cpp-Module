@@ -82,11 +82,9 @@ int main()
 
         sp.addNumber(numbers.begin(), numbers.end());
 
-        std::cout << "Range shortest span: "
-                  << sp.shortestSpan() << std::endl;
+        std::cout << "Range shortest span: " << sp.shortestSpan() << std::endl;
 
-        std::cout << "Range longest span: "
-                  << sp.longestSpan() << std::endl;
+        std::cout << "Range longest span: " << sp.longestSpan() << std::endl;
     }
     catch (const std::exception &e)
     {
