@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <stack>
+#include <list>
 
 int main()
 {
@@ -31,17 +32,46 @@ int main()
     std::cout << "First element: " << *it << std::endl;
 
     ++it;
+
     std::cout << "After ++it: " << *it << std::endl;
 
     --it;
-    std::cout << "After --it: " << *it << std::endl;
 
+    std::cout << "After --it: " << *it << std::endl;
     std::cout << "\nAll elements:" << std::endl;
 
     while (it != ite)
     {
         std::cout << *it << std::endl;
         ++it;
+    }
+
+    std::cout << "\n----- STD::STACK COPY TEST -----" << std::endl;
+
+    std::stack<int> s(mstack);
+
+    std::cout << "Copied stack top: " << s.top() << std::endl;
+
+    std::cout << "Copied stack size: " << s.size() << std::endl;
+
+
+    std::cout << "\n----- LIST COMPARISON TEST -----" << std::endl;
+
+    std::list<int> lst;
+
+    lst.push_back(5);
+    lst.push_back(3);
+    lst.push_back(5);
+    lst.push_back(737);
+    lst.push_back(0);
+
+    std::list<int>::iterator lit = lst.begin();
+    std::list<int>::iterator lite = lst.end();
+
+    while (lit != lite)
+    {
+        std::cout << *lit << std::endl;
+        ++lit;
     }
 
     return 0;
